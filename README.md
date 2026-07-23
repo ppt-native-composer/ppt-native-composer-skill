@@ -2,6 +2,8 @@
 
 `ppt-native-composer` is a Python toolchain for building editable PowerPoint decks from structured page contracts. It focuses on reliable assembly, provenance, editable-text preservation, asset validation, immutable runtime evidence, and human-reviewable production gates.
 
+中文说明请见 [README.zh-CN.md](README.zh-CN.md)。
+
 It is not an autonomous art-direction engine. Client-grade visual direction requires a human-approved reference, flat comp, Figma/Photoshop source, or separately licensed/commissioned artwork.
 
 ## Included
