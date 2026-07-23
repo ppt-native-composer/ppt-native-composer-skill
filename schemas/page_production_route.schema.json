@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/page_production_route.schema.json",
+  "title": "PPT Native Composer Page Production Route",
+  "type": "object",
+  "required": [
+    "slide_number",
+    "page_title",
+    "selected_route",
+    "composition_archetype_id",
+    "route_reason",
+    "why_not_full_reference",
+    "why_not_native_only",
+    "visual_asset_strategy",
+    "cost_level",
+    "expected_generation_count",
+    "expected_iteration_count",
+    "approval"
+  ],
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1 },
+    "page_title": { "type": "string" },
+    "selected_route": {
+      "type": "string",
+      "enum": [
+        "element_asset_hybrid",
+        "full_substrate_hybrid",
+        "visual_reference_mode",
+        "template_native_plus_skin",
+        "pure_native_safety"
+      ]
+    },
+    "route_provenance": {
+      "type": "object",
+      "properties": {
+        "raw_route": { "type": ["string", "null"] },
+        "canonical_route": { "type": "string" },
+        "normalization_source": { "type": "string" },
+        "legacy_alias_used": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "composition_archetype_id": { "type": "string", "minLength": 1 },
+    "route_reason": { "type": "string", "minLength": 1 },
+    "why_not_full_reference": { "type": "string" },
+    "why_not_native_only": { "type": "string" },
+    "why_route_a_element_asset_hybrid_is_insufficient": { "type": "string" },
+    "why_route_b_full_substrate_hybrid_is_insufficient": { "type": "string" },
+    "visual_asset_strategy": {
+      "type": "object",
+      "required": [
+        "asset_count",
+        "asset_types",
+        "asset_roles",
+        "requires_whole_slide_field",
+        "requires_element_assets",
+        "requires_clean_substrate",
+        "requires_visual_reference"
+      ],
+      "properties": {
+        "asset_count": { "type": "integer", "minimum": 0 },
+        "asset_types": { "type": "array", "items": { "type": "string" } },
+        "asset_roles": { "type": "array", "items": { "type": "string" } },
+        "requires_whole_slide_field": { "type": "boolean" },
+        "requires_element_assets": { "type": "boolean" },
+        "requires_clean_substrate": { "type": "boolean" },
+        "requires_visual_reference": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "cost_level": { "type": "string", "enum": ["low", "medium", "high"] },
+    "expected_generation_count": { "type": "integer", "minimum": 0 },
+    "expected_iteration_count": { "type": "integer", "minimum": 0 },
+    "approval": {
+      "type": "object",
+      "required": ["approved", "approved_by", "approval_notes"],
+      "properties": {
+        "approved": { "type": "boolean", "default": false },
+        "approved_by": { "type": "string" },
+        "approval_notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "selected_route": { "const": "visual_reference_mode" } },
+        "required": ["selected_route"]
+      },
+      "then": {
+        "properties": {
+          "why_not_full_reference": { "minLength": 1 },
+          "why_route_a_element_asset_hybrid_is_insufficient": { "minLength": 1 },
+          "why_route_b_full_substrate_hybrid_is_insufficient": { "minLength": 1 },
+          "expected_generation_count": { "minimum": 1 },
+          "expected_iteration_count": { "minimum": 1 },
+          "approval": {
+            "properties": { "approved": { "const": true } }
+          }
+        },
+        "required": [
+          "why_route_a_element_asset_hybrid_is_insufficient",
+          "why_route_b_full_substrate_hybrid_is_insufficient"
+        ]
+      }
+    }
+  ],
+  "additionalProperties": true
+}

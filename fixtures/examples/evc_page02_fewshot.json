@@ -1,0 +1,48 @@
+{
+  "slide_number": 2,
+  "title": "Make the choice visible",
+  "composition_version": "public-example-v1",
+  "source_design_intent": {
+    "main_visual_move": "A focused information field guides the reading path toward a verified decision point.",
+    "text_image_relationship": {
+      "relationship_type": "embedded",
+      "description": "Editable claims and proof labels act as structural annotations within an approved visual field.",
+      "must_not_be": ["ordinary bullet list", "text baked into generated image"]
+    }
+  },
+  "asset_reference": {
+    "asset_id": "example_focus_substrate",
+    "asset_path": "project/assets/example_focus_substrate.png",
+    "visual_focus_note": "Example only. Supply a separately approved, textless asset for a real project."
+  },
+  "editable_objects": [
+    {
+      "id": "example_title",
+      "source_id": "example_title",
+      "role": "title",
+      "text": "Make the choice visible",
+      "editable": true,
+      "visual_behavior": "headline_anchor",
+      "hierarchy_level": 1,
+      "zone": {"x": 0.8, "y": 0.8, "w": 5.0, "h": 0.8},
+      "typographic_treatment": {
+        "weight_token": "bold",
+        "weight_note": "display headline",
+        "hierarchy_level": 1
+      },
+      "relationship_to_asset": {
+        "anchor_type": "along_axis",
+        "asset_reference": "approved quiet entry field",
+        "why_this_position": "The title establishes the reading entry before the asset focus.",
+        "primary_axis": {"x": 0.8, "y": 1.2, "w": 7.5, "h": 2.2}
+      },
+      "must_not_be": ["ordinary paragraph stack", "text baked into generated image"]
+    }
+  ],
+  "native_support": [],
+  "approval": {
+    "approved": true,
+    "approved_by": "example_human_reviewer",
+    "approval_notes": "Public fixture with no client copy or asset."
+  }
+}

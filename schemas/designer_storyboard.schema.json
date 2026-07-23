@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/designer_storyboard.schema.json",
+  "title": "PPT Native Composer Designer Storyboard (Deprecated Legacy)",
+  "description": "Deprecated legacy V4 storyboard artifact. New work should use design_intent.schema.json instead.",
+  "type": "object",
+  "required": [
+    "slide_number",
+    "title",
+    "page_function",
+    "storyboard_version",
+    "first_impression",
+    "second_impression",
+    "third_impression",
+    "main_visual_action",
+    "visual_tension",
+    "reading_path",
+    "text_image_relationship",
+    "editable_text_strategy",
+    "asset_role",
+    "anchor_strategy",
+    "negative_space_strategy",
+    "composition_sketch",
+    "prompt_implications",
+    "visual_qa_expectations",
+    "do_not_use"
+  ],
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "page_function": { "type": "string" },
+    "storyboard_version": { "type": "string", "default": "v1" },
+    "first_impression": { "type": "string", "minLength": 1 },
+    "second_impression": { "type": "string", "minLength": 1 },
+    "third_impression": { "type": "string", "minLength": 1 },
+    "main_visual_action": { "type": "string", "minLength": 1 },
+    "visual_tension": { "type": "string" },
+    "reading_path": {
+      "type": "array",
+      "minItems": 3,
+      "items": { "type": "string" }
+    },
+    "text_image_relationship": {
+      "type": "object",
+      "required": ["relationship_type", "description", "must_not_be"],
+      "properties": {
+        "relationship_type": {
+          "type": "string",
+          "enum": ["interlocked", "adjacent", "overlay", "embedded", "sequential"]
+        },
+        "description": { "type": "string" },
+        "must_not_be": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "editable_text_strategy": {
+      "type": "object",
+      "required": ["editable_objects", "placement_logic", "why_text_remains_editable"],
+      "properties": {
+        "editable_objects": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "placement_logic": { "type": "string" },
+        "why_text_remains_editable": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "asset_role": {
+      "type": "object",
+      "required": ["asset_type", "structural_role", "what_breaks_if_removed"],
+      "properties": {
+        "asset_type": { "type": "string" },
+        "structural_role": { "type": "string" },
+        "what_breaks_if_removed": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "anchor_strategy": {
+      "type": "object",
+      "required": ["required", "anchor_count", "anchor_logic", "anchor_to_editable_text_map"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "anchor_count": { "type": "integer", "minimum": 0 },
+        "anchor_logic": { "type": "string" },
+        "anchor_to_editable_text_map": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "negative_space_strategy": { "type": "string" },
+    "composition_sketch": {
+      "type": "object",
+      "required": ["plain_language", "zones", "layer_order"],
+      "properties": {
+        "plain_language": { "type": "string" },
+        "zones": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "layer_order": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "prompt_implications": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "visual_qa_expectations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "do_not_use": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "approved": { "type": "boolean", "default": false },
+    "approved_by": { "type": "string" },
+    "approval_notes": { "type": "string" }
+  },
+  "additionalProperties": true
+}

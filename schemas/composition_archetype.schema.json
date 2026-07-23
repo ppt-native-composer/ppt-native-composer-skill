@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/composition_archetype.schema.json",
+  "title": "PPT Native Composer Composition Archetype",
+  "type": "object",
+  "required": [
+    "archetype_id",
+    "route",
+    "page_functions",
+    "design_problem_fit",
+    "core_visual_action",
+    "visual_weight_distribution",
+    "asset_requirements",
+    "editable_text_pattern",
+    "native_support_rules",
+    "anti_patterns",
+    "approval"
+  ],
+  "properties": {
+    "archetype_id": { "type": "string", "minLength": 1 },
+    "route": { "type": "string", "minLength": 1 },
+    "page_functions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "design_problem_fit": { "type": "string", "minLength": 1 },
+    "core_visual_action": { "type": "string", "minLength": 1 },
+    "visual_weight_distribution": {
+      "type": "object",
+      "required": ["primary_visual_area", "text_area", "negative_space", "focal_density"],
+      "properties": {
+        "primary_visual_area": { "type": "string" },
+        "text_area": { "type": "string" },
+        "negative_space": { "type": "string" },
+        "focal_density": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "asset_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["asset_role", "visual_weight", "expected_scale", "placement_logic"],
+        "properties": {
+          "asset_role": { "type": "string" },
+          "visual_weight": { "type": "string", "enum": ["primary", "secondary", "support"] },
+          "expected_scale": { "type": "string" },
+          "placement_logic": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "editable_text_pattern": {
+      "type": "object",
+      "required": ["title_behavior", "body_behavior", "proof_point_behavior", "keyword_behavior"],
+      "properties": {
+        "title_behavior": { "type": "string" },
+        "body_behavior": { "type": "string" },
+        "proof_point_behavior": { "type": "string" },
+        "keyword_behavior": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "native_support_rules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "anti_patterns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "approval": {
+      "type": "object",
+      "required": ["approved", "approved_by", "approval_notes"],
+      "properties": {
+        "approved": { "type": "boolean", "default": false },
+        "approved_by": { "type": "string" },
+        "approval_notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

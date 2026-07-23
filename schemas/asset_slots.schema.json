@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/asset_slots.schema.json",
+  "title": "PPT Native Composer Asset Slots",
+  "type": "object",
+  "required": ["slots"],
+  "properties": {
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "asset_id",
+          "slide_number",
+          "kind",
+          "filename",
+          "required",
+          "asset_type",
+          "visual_role",
+          "expected_zone",
+          "transparency_required",
+          "text_allowed",
+          "logo_allowed",
+          "exact_cn_text_required",
+          "status"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "asset_id": { "type": "string" },
+          "slide_number": { "type": "integer" },
+          "kind": { "type": "string", "enum": ["generated_asset", "sourced_asset", "visual_text_asset"] },
+          "filename": { "type": "string" },
+          "required": { "type": "boolean" },
+          "asset_type": { "type": "string" },
+          "visual_role": { "type": "string" },
+          "expected_zone": { "type": "object" },
+          "transparency_required": { "type": "boolean" },
+          "text_allowed": { "type": "boolean" },
+          "logo_allowed": { "type": "boolean" },
+          "exact_cn_text_required": { "type": "boolean" },
+          "status": {
+            "type": "string",
+            "enum": ["missing", "placeholder", "ready", "invalid_transparency", "wrong_dimensions", "invalid"]
+          },
+          "path": { "type": "string" },
+          "placeholder_sha256": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PPT Native Composer Runtime Case Manifest",
+  "type": "object",
+  "required": ["manifest_version", "case_id", "case_kind", "inputs", "output", "stages", "runtime_options"],
+  "properties": {
+    "manifest_version": {"const": "1.0"},
+    "case_id": {"type": "string", "minLength": 1},
+    "case_kind": {"enum": ["real_regression", "synthetic_test"]},
+    "source": {
+      "type": "object",
+      "properties": {"source_pptx": {"type": ["string", "null"]}, "template_pptx": {"type": ["string", "null"]}},
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["blueprint", "design_intent", "route", "evc"],
+      "properties": {
+        "blueprint": {"type": "string"},
+        "design_intent": {"type": ["string", "null"]},
+        "route": {"type": ["string", "null"]},
+        "evc": {"type": ["string", "null"]},
+        "asset_registry": {"type": ["string", "null"]},
+        "asset_plan": {"type": ["string", "null"]},
+        "assets_dir": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "output": {
+      "type": "object",
+      "required": ["root", "allow_overwrite"],
+      "properties": {"root": {"type": "string"}, "allow_overwrite": {"type": "boolean"}},
+      "additionalProperties": false
+    },
+    "stages": {
+      "type": "object",
+      "required": ["assemble", "package_inspection", "no_shadow_scan", "preview", "layout_intelligence_advisory"],
+      "properties": {
+        "assemble": {"type": "boolean"}, "package_inspection": {"type": "boolean"}, "no_shadow_scan": {"type": "boolean"}, "preview": {"type": "boolean"}, "layout_intelligence_advisory": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "runtime_options": {
+      "type": "object",
+      "required": ["resume", "fail_on_unsupported_required_field"],
+      "properties": {"resume": {"type": "boolean"}, "fail_on_unsupported_required_field": {"type": "boolean"}, "preview_dpi": {"type": "integer", "minimum": 36}},
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

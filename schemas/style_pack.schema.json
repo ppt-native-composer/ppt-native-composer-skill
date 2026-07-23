@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/style_pack.schema.json",
+  "title": "PPT Native Composer Style Pack",
+  "type": "object",
+  "required": [
+    "name",
+    "reference_summary",
+    "quality_bar",
+    "palette",
+    "typography",
+    "composition_grammar",
+    "image_language",
+    "native_component_skin",
+    "page_families",
+    "visual_motifs",
+    "asset_prompt_base",
+    "do_not_use"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "reference_summary": { "type": "string" },
+    "quality_bar": { "type": "string" },
+    "palette": { "type": "object" },
+    "typography": { "type": "object" },
+    "composition_grammar": { "type": "object" },
+    "image_language": { "type": "object" },
+    "native_component_skin": { "type": "object" },
+    "page_families": { "type": "object" },
+    "visual_motifs": { "type": "array", "items": { "type": "string" } },
+    "asset_prompt_base": { "type": "string" },
+    "do_not_use": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}

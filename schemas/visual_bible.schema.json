@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/visual_bible.schema.json",
+  "title": "PPT Native Composer Visual Bible",
+  "type": "object",
+  "required": [
+    "moodboard_reference",
+    "style_direction",
+    "design_tokens",
+    "visual_motifs",
+    "page_family_map",
+    "asset_prompt_kit",
+    "native_component_style",
+    "do_not_use"
+  ],
+  "properties": {
+    "moodboard_reference": { "type": "string" },
+    "style_direction": { "type": "string" },
+    "design_tokens": { "type": "object" },
+    "font_plan": {
+      "type": "object",
+      "properties": {
+        "type_scale": {
+          "type": "object",
+          "properties": {
+            "display": { "$ref": "#/$defs/type_scale_item" },
+            "title": { "$ref": "#/$defs/type_scale_item" },
+            "claim": { "$ref": "#/$defs/type_scale_item" },
+            "section": { "$ref": "#/$defs/type_scale_item" },
+            "body": { "$ref": "#/$defs/type_scale_item" },
+            "label": { "$ref": "#/$defs/type_scale_item" },
+            "caption": { "$ref": "#/$defs/type_scale_item" },
+            "page_number": { "$ref": "#/$defs/type_scale_item" }
+          },
+          "additionalProperties": { "$ref": "#/$defs/type_scale_item" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "visual_motifs": { "type": "array", "items": { "type": "string" } },
+    "page_family_map": { "type": "object" },
+    "asset_prompt_kit": { "type": "object" },
+    "native_component_style": { "type": "string" },
+    "do_not_use": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "type_scale_item": {
+      "type": "object",
+      "required": ["cjk_size_pt", "latin_size_pt", "weight", "line_height", "min_contrast"],
+      "properties": {
+        "cjk_size_pt": { "type": "number" },
+        "latin_size_pt": { "type": "number" },
+        "weight": { "type": "string" },
+        "line_height": { "type": "number" },
+        "min_contrast": { "type": "number" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

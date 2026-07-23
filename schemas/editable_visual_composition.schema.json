@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/editable_visual_composition.schema.json",
+  "title": "PPT Native Composer Editable Visual Composition",
+  "type": "object",
+  "required": [
+    "slide_number",
+    "title",
+    "composition_version",
+    "text_layer_concept",
+    "why_text_is_visual",
+    "editable_objects",
+    "native_support",
+    "anti_patterns",
+    "approval"
+  ],
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "composition_version": { "type": "string", "default": "v1" },
+    "runtime_version": { "type": "string", "enum": ["evc_runtime_v2"] },
+    "composition_pattern": {
+      "type": "string",
+      "enum": ["title_to_visual_entry", "converging_path_statements", "beam_progression_labels", "evidence_admission_gate", "sequential_node_labels"]
+    },
+    "visual_targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": { "type": "string", "minLength": 1 },
+          "geometry": { "$ref": "#/$defs/zone" },
+          "bbox": { "$ref": "#/$defs/zone" },
+          "center": { "$ref": "#/$defs/point" },
+          "size": { "$ref": "#/$defs/size" },
+          "path_points": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/point" } },
+          "bezier_points": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/point" } }
+        },
+        "additionalProperties": true
+      }
+    },
+    "text_layer_concept": { "type": "string", "minLength": 1 },
+    "why_text_is_visual": { "type": "string", "minLength": 1 },
+    "editable_objects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "source_id",
+          "role",
+          "text",
+          "editable",
+          "visual_behavior",
+          "hierarchy_level",
+          "zone",
+          "typographic_treatment",
+          "relationship_to_asset",
+          "must_not_be"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "source_id": {
+            "type": "string",
+            "description": "Editable source object id from slide.editable_layer. Defaults to id only for legacy migration."
+          },
+          "role": { "type": "string", "minLength": 1 },
+          "text": { "type": "string" },
+          "editable": { "type": "boolean", "const": true },
+          "text_revision_approved": { "type": "boolean", "default": false },
+          "text_revision_approval_note": { "type": "string" },
+          "visual_behavior": {
+            "type": "string",
+            "enum": [
+              "headline_anchor",
+              "focal_label",
+              "route_node",
+              "evidence_label",
+              "coordinate_label",
+              "rhythm_marker",
+              "caption"
+            ]
+          },
+          "hierarchy_level": { "type": "integer", "minimum": 1 },
+          "zone": { "$ref": "#/$defs/zone" },
+          "relational_binding": { "$ref": "#/$defs/relational_binding" },
+          "geometry": { "$ref": "#/$defs/zone" },
+          "rotation": { "type": "number" },
+          "layer": {
+            "type": "string",
+            "enum": ["primary_text", "caption", "label", "page_system"]
+          },
+          "z_order": { "type": "integer" },
+          "appearance": {
+            "type": "object",
+            "properties": {
+              "fill": { "type": ["string", "null"] },
+              "fill_color": { "type": ["string", "null"] },
+              "stroke": { "type": ["string", "null"] },
+              "line_color": { "type": ["string", "null"] },
+              "line_width_pt": { "type": "number" },
+              "stroke_width_pt": { "type": "number" },
+              "dash_style": { "type": "string" },
+              "opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+            },
+            "additionalProperties": true
+          },
+          "paragraphs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "alignment": { "type": "string" },
+                "line_spacing": { "type": "number" },
+                "spacing_before_pt": { "type": "number" },
+                "spacing_after_pt": { "type": "number" },
+                "bullet": { "type": "boolean" },
+                "runs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["text"],
+                    "properties": {
+                      "text": { "type": "string" },
+                      "font_family": { "type": "string" },
+                      "size_pt": { "type": "number" },
+                      "weight_token": { "type": "string", "enum": ["bold", "semibold", "medium", "regular", "light"] },
+                      "italic": { "type": "boolean" },
+                      "color": { "type": "string" },
+                      "font_opacity": { "type": "number", "minimum": 0, "maximum": 1 }
+                    },
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "typographic_treatment": {
+            "type": "object",
+            "required": [
+              "hierarchy_level",
+              "weight",
+              "weight_token",
+              "size_intent",
+              "alignment",
+              "emphasis",
+              "line_break_logic",
+              "spacing_logic"
+            ],
+            "properties": {
+              "hierarchy_level": { "type": "integer", "minimum": 1 },
+              "weight": { "type": "string" },
+              "weight_token": {
+                "type": "string",
+                "enum": ["bold", "semibold", "medium", "regular", "light"]
+              },
+              "weight_note": { "type": "string" },
+              "size_intent": { "type": "string" },
+              "alignment": { "type": "string" },
+              "emphasis": { "type": "string" },
+              "line_break_logic": { "type": "string" },
+              "spacing_logic": { "type": "string" },
+              "color_token": { "type": "string" },
+              "color": { "type": "string" },
+              "font_opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+              "background_color": { "type": "string" },
+              "min_contrast": { "type": "number" },
+              "cjk_size_pt": { "type": "number" },
+              "latin_size_pt": { "type": "number" },
+              "line_height": { "type": ["number", "string"] }
+              ,"cjk_font_family": { "type": "string" }
+              ,"latin_font_family": { "type": "string" }
+              ,"horizontal_alignment": { "type": "string" }
+              ,"vertical_alignment": { "type": "string" }
+              ,"line_spacing": { "type": "number" }
+              ,"paragraph_spacing_before_pt": { "type": "number" }
+              ,"paragraph_spacing_after_pt": { "type": "number" }
+              ,"margins": {
+                "type": "object",
+                "properties": {
+                  "left": { "type": "number" },
+                  "right": { "type": "number" },
+                  "top": { "type": "number" },
+                  "bottom": { "type": "number" }
+                },
+                "additionalProperties": false
+              }
+              ,"line_break_policy": { "type": "string", "enum": ["preserve", "remove"] }
+              ,"bullet": { "type": "boolean" }
+              ,"run_level_emphasis": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": { "type": "string" },
+                    "start": { "type": "integer", "minimum": 0 },
+                    "end": { "type": "integer", "minimum": 0 },
+                    "weight_token": { "type": "string", "enum": ["bold", "semibold", "medium", "regular", "light"] },
+                    "italic": { "type": "boolean" },
+                    "color": { "type": "string" }
+                  },
+                  "additionalProperties": true
+                }
+              }
+              ,"overflow_policy": {
+                "type": "object",
+                "required": ["mode"],
+                "properties": {
+                  "mode": { "type": "string", "enum": ["fail", "warn", "shrink_with_floor"] },
+                  "minimum_size_pt": { "type": "number", "minimum": 1 },
+                  "line_height": { "type": "number", "minimum": 0.5 }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          },
+          "relationship_to_asset": {
+            "type": "object",
+            "required": ["anchor_type", "asset_reference", "why_this_position"],
+            "properties": {
+              "anchor_type": {
+                "type": "string",
+                "enum": [
+                  "on_path",
+                  "near_focus",
+                  "along_axis",
+                  "attached_to_layer",
+                  "floating_in_quiet_field"
+                ]
+              },
+              "asset_reference": { "type": "string" },
+              "focus_point": { "$ref": "#/$defs/zone" },
+              "primary_axis": { "$ref": "#/$defs/zone" },
+              "quiet_fields": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/zone" }
+              },
+              "path_points": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/zone" }
+              },
+              "why_this_position": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": true
+          },
+          "must_not_be": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "native_support": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "purpose", "zone", "must_not_be_decorative"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "type": {
+            "type": "string",
+            "enum": ["line", "tick", "dot", "rule", "rectangle", "ellipse", "straight_connector", "elbow_connector"]
+          },
+          "zone": { "$ref": "#/$defs/zone" },
+          "geometry": { "$ref": "#/$defs/zone" },
+          "layer": { "type": "string", "enum": ["native_support"] },
+          "stroke_color": { "type": "string" },
+          "fill_color": { "type": "string" },
+          "stroke_width_pt": { "type": "number" },
+          "dash_style": { "type": "string" },
+          "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+          "rotation": { "type": "number" },
+          "purpose": { "type": "string", "minLength": 1 },
+          "must_not_be_decorative": { "type": "boolean", "const": true }
+        },
+        "additionalProperties": true
+      }
+    },
+    "anti_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "plain bullet list",
+          "left text block plus right image",
+          "ordinary paragraph stack",
+          "horizontal keyword row",
+          "card stack",
+          "shadow container",
+          "generated substrate plus overlay text stack",
+          "generated image plus text overlay without relationship"
+        ]
+      }
+    },
+    "approval": {
+      "type": "object",
+      "required": ["approved", "approved_by", "approval_notes"],
+      "properties": {
+        "approved": { "type": "boolean", "default": false },
+        "approved_by": { "type": "string" },
+        "approval_notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "zone": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } },
+      "additionalProperties": true
+    },
+    "size": {
+      "type": "object",
+      "required": ["w", "h"],
+      "properties": { "w": { "type": "number" }, "h": { "type": "number" } },
+      "additionalProperties": true
+    },
+    "relational_binding": {
+      "type": "object",
+      "required": ["binding_type", "binding_target_id", "attachment", "orientation", "reading_sequence", "collision_policy", "minimum_clearance", "fallback_behavior"],
+      "properties": {
+        "binding_type": { "type": "string", "enum": ["visual_focus", "path", "node", "asset_region", "asset_edge", "composition_axis", "free"] },
+        "binding_target_id": { "type": "string", "minLength": 1 },
+        "attachment": { "type": "string", "enum": ["start", "middle", "end", "before", "after", "inside", "outside", "tangent", "normal"] },
+        "path_position": { "type": "number", "minimum": 0, "maximum": 1 },
+        "offset": { "$ref": "#/$defs/point" },
+        "orientation": { "type": "string", "enum": ["horizontal", "tangent", "normal", "fixed_angle"] },
+        "fixed_angle": { "type": "number" },
+        "reading_sequence": { "type": "integer", "minimum": 1 },
+        "hierarchy_role": { "type": "string" },
+        "leader_behavior": { "type": "string", "enum": ["none", "line", "dot", "axis", "bracket"] },
+        "collision_policy": { "type": "string", "enum": ["fail", "warn", "avoid", "manual_review"] },
+        "minimum_clearance": { "type": "number", "minimum": 0 },
+        "max_line_width": { "type": "number", "minimum": 0 },
+        "preferred_side": { "type": "string" },
+        "fallback_behavior": { "type": "string", "enum": ["fail", "warn", "use_declared_zone"] }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/slide_blueprint.schema.json",
+  "title": "PPT Native Composer Slide Blueprint",
+  "type": "object",
+  "required": [
+    "slide_number",
+    "title",
+    "page_function",
+    "page_mode",
+    "core_message",
+    "audience_takeaway",
+    "visual_idea",
+    "composition_plan",
+    "editable_layer",
+    "generated_layer",
+    "sourced_asset_layer",
+    "native_graphic_layer",
+    "visual_text_layer",
+    "validation_checks"
+  ],
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "page_function": { "type": "string" },
+    "page_purpose": { "type": "string", "description": "Legacy alias; prefer page_function." },
+    "content_type": { "type": "string", "description": "Legacy content family hint." },
+    "page_mode": {
+      "type": "string",
+      "enum": ["full_image", "hybrid_native", "template_native"]
+    },
+    "core_message": { "type": "string" },
+    "audience_takeaway": { "type": "string" },
+    "visual_idea": { "type": "string" },
+    "storyboard_ref": {
+      "type": "string",
+      "description": "Deprecated legacy path to a Designer Storyboard JSON file. Prefer design_intent_ref."
+    },
+    "designer_storyboard": {
+      "type": "object",
+      "description": "Deprecated legacy inline Designer Storyboard. Prefer design_intent."
+    },
+    "design_intent_ref": {
+      "type": "string",
+      "description": "Path to a Design Intent JSON file relative to the project folder or absolute."
+    },
+    "design_intent": {
+      "type": "object",
+      "description": "Inline Design Intent. Required for hybrid_native/full_image unless design_intent_ref is present."
+    },
+    "page_production_route_ref": {
+      "type": "string",
+      "description": "Path to a Page Production Route JSON file relative to the project folder or absolute."
+    },
+    "page_production_route": {
+      "type": "object",
+      "description": "Inline approved Page Production Route. Required for assembly/deliverable unless deck-level route/ref is present."
+    },
+    "composition_archetype_ref": {
+      "type": "string",
+      "description": "Path to a Composition Archetype JSON file relative to the project folder or absolute."
+    },
+    "composition_archetype": {
+      "type": "object",
+      "description": "Inline approved Composition Archetype. Required for assembly/deliverable unless deck-level archetype/ref is present."
+    },
+    "editable_visual_composition_ref": {
+      "type": "string",
+      "description": "Path to an Editable Visual Composition JSON file relative to the project folder or absolute. Required for hybrid_native/full_image pages with editable text before assembly."
+    },
+    "editable_visual_composition": {
+      "type": "object",
+      "description": "Inline Editable Visual Composition. Defines editable text as art-directed visual objects rather than ordinary paragraph or bullet placement."
+    },
+    "composition_plan": {
+      "type": "object",
+      "required": ["type", "asset_zone", "text_safe_zone", "integration_logic", "approved"],
+      "properties": {
+        "type": { "type": "string" },
+        "asset_zone": { "$ref": "#/$defs/zone" },
+        "text_safe_zone": { "$ref": "#/$defs/zone" },
+        "integration_logic": { "type": "string" },
+        "approved": { "type": "boolean", "default": false },
+        "approved_by": { "type": "string" },
+        "approval_notes": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "editable_layer": {
+      "type": "object",
+      "required": ["title", "page_number"],
+      "properties": {
+        "title": { "$ref": "#/$defs/editable_text_item" },
+        "page_number": { "$ref": "#/$defs/editable_text_item" },
+        "body": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/editable_text_item" }
+        },
+        "labels": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/editable_text_item" }
+        },
+        "data": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/editable_text_item" }
+        },
+        "table_text": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/editable_text_item" }
+        },
+        "notes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/editable_text_item" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "generated_layer": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/generated_asset" }
+    },
+    "sourced_asset_layer": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sourced_asset" }
+    },
+    "native_graphic_layer": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/native_graphic" }
+    },
+    "visual_text_layer": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/visual_text_asset" }
+    },
+    "typography_plan": { "type": "object" },
+    "layout_constraints": { "type": "object" },
+    "risk_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "revision_priority": { "type": "string" },
+    "validation_checks": {
+      "type": "object",
+      "required": [
+        "package_passed",
+        "editability_passed",
+        "asset_delete_test_passed",
+        "visual_qa_passed",
+        "no_shadow_passed"
+      ],
+      "properties": {
+        "package_passed": { "type": "boolean", "default": false },
+        "editability_passed": { "type": "boolean", "default": false },
+        "asset_delete_test_passed": { "type": "boolean", "default": false },
+        "visual_qa_passed": { "type": "boolean", "default": false },
+        "no_shadow_passed": { "type": "boolean", "default": false }
+      },
+      "additionalProperties": true
+    },
+
+    "editable_text": { "type": "array", "description": "Legacy field; replaced by editable_layer." },
+    "visual_text_assets": { "type": "array", "description": "Legacy field; replaced by visual_text_layer." },
+    "image_assets": { "type": "array", "description": "Legacy field; replaced by generated_layer/sourced_asset_layer." },
+    "locked_raster": { "type": "array", "description": "Legacy field." },
+    "visual_design_role": { "type": "string", "description": "Legacy field; replaced by visual_idea and asset visual_role." },
+    "visual_anchors": { "type": "array", "items": { "type": "string" }, "description": "Legacy field." },
+    "native_structure": { "type": "string", "description": "Legacy field." },
+    "component_preset": { "type": "string", "description": "Legacy field; no longer controls the page before composition_plan." },
+    "layout_notes": { "type": "string" },
+    "speaker_notes": { "type": "string" }
+  },
+  "$defs": {
+    "zone": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "w": { "type": "number" },
+        "h": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "editable_text_item": {
+      "type": "object",
+      "required": ["editable"],
+      "properties": {
+        "id": { "type": "string" },
+        "role": { "type": "string" },
+        "text": { "type": "string" },
+        "editable": { "type": "boolean" },
+        "zone": { "$ref": "#/$defs/zone" }
+      },
+      "additionalProperties": true
+    },
+    "generated_asset": {
+      "type": "object",
+      "required": [
+        "asset_id",
+        "asset_type",
+        "visual_role",
+        "prompt",
+        "dimensions",
+        "transparency_required",
+        "text_allowed",
+        "logo_allowed",
+        "exact_cn_text_required",
+        "style_inheritance",
+        "integration_with_editable_layer"
+      ],
+      "properties": {
+        "asset_id": { "type": "string" },
+        "asset_type": { "type": "string" },
+        "visual_role": { "type": "string" },
+        "prompt": { "type": "string" },
+        "dimensions": { "type": "object" },
+        "expected_zone": { "$ref": "#/$defs/zone" },
+        "transparency_required": { "type": "boolean" },
+        "text_allowed": { "type": "boolean" },
+        "logo_allowed": { "type": "boolean" },
+        "exact_cn_text_required": { "type": "boolean" },
+        "style_inheritance": { "type": "string" },
+        "integration_with_editable_layer": { "type": "string" },
+        "filename": { "type": "string" },
+        "path": { "type": "string" },
+        "status": { "type": "string" },
+        "asset_visual_map": { "$ref": "#/$defs/asset_visual_map" }
+      },
+      "additionalProperties": true
+    },
+    "sourced_asset": {
+      "type": "object",
+      "required": ["asset_id", "asset_type", "visual_role"],
+      "properties": {
+        "asset_id": { "type": "string" },
+        "asset_type": { "type": "string" },
+        "visual_role": { "type": "string" },
+        "expected_zone": { "$ref": "#/$defs/zone" },
+        "source": { "type": "string" },
+        "filename": { "type": "string" },
+        "path": { "type": "string" },
+        "status": { "type": "string" },
+        "transparency_required": { "type": "boolean" },
+        "text_allowed": { "type": "boolean" },
+        "logo_allowed": { "type": "boolean" },
+        "integration_with_editable_layer": { "type": "string" },
+        "asset_visual_map": { "$ref": "#/$defs/asset_visual_map" }
+      },
+      "additionalProperties": true
+    },
+    "asset_visual_map": {
+      "type": "object",
+      "properties": {
+        "coordinate_space": {
+          "type": "string",
+          "description": "Recommended value: slide_inches. Geometry validation is advisory unless this is slide_inches."
+        },
+        "focus_point": { "$ref": "#/$defs/zone" },
+        "primary_axis": { "$ref": "#/$defs/zone" },
+        "quiet_fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/zone" }
+        },
+        "path_points": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/zone" }
+        },
+        "forbidden_text_zones": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/zone" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "native_graphic": {
+      "type": "object",
+      "required": ["object_type", "purpose", "reason_required", "must_not_be_decorative"],
+      "properties": {
+        "object_type": { "type": "string" },
+        "purpose": { "type": "string" },
+        "reason_required": { "type": "string" },
+        "must_not_be_decorative": { "type": "boolean", "const": true }
+      },
+      "additionalProperties": true
+    },
+    "visual_text_asset": {
+      "type": "object",
+      "required": ["text", "reason", "editable"],
+      "properties": {
+        "id": { "type": "string" },
+        "text": { "type": "string" },
+        "reason": { "type": "string" },
+        "editable": { "type": "boolean", "const": false },
+        "exact_cn_text_required": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

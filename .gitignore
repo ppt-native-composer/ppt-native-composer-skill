@@ -1,0 +1,25 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.coverage
+.pytest_cache/
+.venv/
+htmlcov/
+
+# Generated and client-specific material
+outputs/
+work/
+assets/
+project/
+*.pptx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.zip
+
+# Local secrets and environment state
+.env
+.env.*
+!.env.example

@@ -1,0 +1,380 @@
+{
+  "version": 1,
+  "style_packs": {
+    "editorial_event_signal": {
+      "name": "Editorial Event Signal",
+      "reference_summary": "Warm editorial proposal system with cream paper, black title hierarchy, coral signal accents, blue markers, structured image fields, and ticket-like execution modules.",
+      "quality_bar": "Feel like a designed proposal magazine system, not a default PPT template.",
+      "layout_recipe": "editorial_event",
+      "palette": {
+        "background": "#F6F0E6",
+        "surface": "#FFFDF8",
+        "ink": "#151515",
+        "accent": "#FF5A3D",
+        "secondary_accent": "#276EF1",
+        "muted": "#70675D",
+        "grid": "#DDD5CA",
+        "stroke_muted": "#B7AEA1"
+      },
+      "typography": {
+        "title_character": "bold editorial headline, editable",
+        "body_character": "compact readable proposal body",
+        "label_character": "small uppercase utility labels",
+        "data_character": "large editable data emphasis"
+      },
+      "composition_grammar": {
+        "grid": "editorial frame, side rail, modular cards, visible thin rules",
+        "image_scale": "one strong visual object or editorial crop per strategy page",
+        "margin_system": "wide paper margins with rule-line discipline",
+        "density_rule": "strategy pages breathe; execution pages denser but structured"
+      },
+      "image_language": {
+        "photography": "premium event/editorial photography with warm highlights",
+        "generated_assets": "transparent premium event object, light trail, ticket/object metaphor",
+        "lighting": "warm directional signal light",
+        "crop": "large editorial crop or isolated transparent object",
+        "texture": "subtle paper grain and soft shadow"
+      },
+      "native_component_skin": {
+        "cards": "cream or white cards with coral tabs, thin muted lines, soft editorial shadows",
+        "tables": "matrix with dark header band, numbered coral/blue chips, generous row spacing",
+        "timelines": "thin coral rule with ticket nodes and editable date labels",
+        "labels": "small black or coral editorial labels"
+      },
+      "page_families": {
+        "cover": "large visual field, editable title, premium signal atmosphere",
+        "strategy": "argument cards plus visual metaphor object",
+        "execution": "ticket/card structures with integrated icon or object slots",
+        "data": "styled native matrix or capsules"
+      },
+      "visual_motifs": [
+        "editorial rule line",
+        "ticket label",
+        "coral signal chip",
+        "object anchor"
+      ],
+      "asset_prompt_base": "premium editorial event proposal, cream paper and black typography context, coral signal accent, warm directional light, no fake UI text",
+      "do_not_use": [
+        "default Office table",
+        "plain bullet slide",
+        "random microcopy",
+        "QR code",
+        "fake logo"
+      ]
+    },
+    "swiss_modular_red": {
+      "name": "Swiss Modular Red",
+      "reference_summary": "Strict modular grid, restrained black type, red signal accents, clear white/near-white fields, and strong information hierarchy.",
+      "quality_bar": "Must feel precise, typographic, and deliberate; high-end through restraint rather than decoration.",
+      "layout_recipe": "swiss_modular",
+      "palette": {
+        "background": "#F7F7F2",
+        "surface": "#FFFFFF",
+        "ink": "#111111",
+        "accent": "#E62020",
+        "secondary_accent": "#B9B9B3",
+        "muted": "#6A6A64",
+        "grid": "#D8D8D0",
+        "stroke_muted": "#C8C8C0"
+      },
+      "typography": {
+        "title_character": "large clean grotesk title, editable",
+        "body_character": "neutral compact grid-aligned body",
+        "label_character": "strict uppercase red/black labels",
+        "data_character": "precise tabular emphasis"
+      },
+      "composition_grammar": {
+        "grid": "strict modular columns, visible alignment, minimal corners",
+        "image_scale": "images are cropped or boxed into grid modules",
+        "margin_system": "wide margins with consistent line starts",
+        "density_rule": "high information clarity with restrained accent"
+      },
+      "image_language": {
+        "photography": "clean editorial crop, minimal environmental detail",
+        "generated_assets": "isolated object, clean shadow, no expressive clutter",
+        "lighting": "even controlled studio light",
+        "crop": "grid-bounded crop or isolated object",
+        "texture": "flat clean paper"
+      },
+      "native_component_skin": {
+        "cards": "square or slight-radius modules with red index blocks and hairline rules",
+        "tables": "strict grid matrix with black header and red active chips",
+        "timelines": "single red rule with square nodes and tight labels",
+        "labels": "red utility tags and black section bars"
+      },
+      "page_families": {
+        "cover": "large type and controlled object crop",
+        "strategy": "modular argument units and one boxed visual anchor",
+        "execution": "grid cards with red step numbers",
+        "data": "clean matrix, precise lines, restrained color"
+      },
+      "visual_motifs": [
+        "red index block",
+        "hairline grid",
+        "black section bar",
+        "modular crop"
+      ],
+      "asset_prompt_base": "strict Swiss editorial proposal, white field, black typography context, red accent block, clean studio object, no fake text",
+      "do_not_use": [
+        "decorative gradients",
+        "busy illustration",
+        "soft generic cards",
+        "random microcopy",
+        "fake logo"
+      ]
+    },
+    "data_journalism_dark": {
+      "name": "Data Journalism Dark",
+      "reference_summary": "Bloomberg-style dark proposal system with compact dashboard logic, red/orange highlights, graphite panels, and chart-like native skins.",
+      "quality_bar": "Must feel analytical and premium, with dense but readable editorial data hierarchy.",
+      "layout_recipe": "dark_data",
+      "palette": {
+        "background": "#101114",
+        "surface": "#181B21",
+        "ink": "#F4F1EA",
+        "accent": "#FF3B30",
+        "secondary_accent": "#F5A24A",
+        "muted": "#8B8F98",
+        "grid": "#2A2D34",
+        "label": "#0B0C0F",
+        "on_label": "#F4F1EA",
+        "stroke_muted": "#050608"
+      },
+      "typography": {
+        "title_character": "sharp editorial dashboard headline, editable",
+        "body_character": "compact analytical body text",
+        "label_character": "terminal-like uppercase labels",
+        "data_character": "large high-contrast metrics"
+      },
+      "composition_grammar": {
+        "grid": "dark dashboard grid, panelized modules, chart-like axes",
+        "image_scale": "visual objects appear as analytical evidence or signal object",
+        "margin_system": "dense but aligned dashboard margins",
+        "density_rule": "more information per page, still with clear hierarchy"
+      },
+      "image_language": {
+        "photography": "dark editorial crop with controlled highlights",
+        "generated_assets": "glossy signal object on dark transparent or isolated field",
+        "lighting": "directional red/orange highlights",
+        "crop": "object or chart-like evidence panel",
+        "texture": "graphite, subtle scanline, low noise"
+      },
+      "native_component_skin": {
+        "cards": "dark panels, red indicators, thin grid rules, compact labels",
+        "tables": "dashboard matrix with red/orange focus chips",
+        "timelines": "signal line, square nodes, compact phase labels",
+        "labels": "black terminal labels with red highlights"
+      },
+      "page_families": {
+        "cover": "dark object hero plus dashboard framing",
+        "strategy": "argument cards as analytical evidence modules",
+        "execution": "operation cards as dashboard tasks",
+        "data": "dark matrix and chart-like grids"
+      },
+      "visual_motifs": [
+        "dashboard panel",
+        "red signal mark",
+        "thin data grid",
+        "terminal label"
+      ],
+      "asset_prompt_base": "premium dark data-journalism event proposal, graphite interface context, red/orange signal highlight, no fake UI text",
+      "do_not_use": [
+        "flat office chart",
+        "cheerful pastel palette",
+        "random UI labels",
+        "QR code",
+        "fake logo"
+      ]
+    },
+    "risograph_zine": {
+      "name": "Risograph Zine",
+      "reference_summary": "Duotone print/zine proposal system with handmade energy, bold blocks, overprint accents, and editorial poster-like modules.",
+      "quality_bar": "Must feel intentionally printed and cultural, while body copy stays editable and structured.",
+      "layout_recipe": "zine_blocks",
+      "palette": {
+        "background": "#FFF1D6",
+        "surface": "#FFF8E8",
+        "ink": "#121212",
+        "accent": "#FF3B7A",
+        "secondary_accent": "#2457FF",
+        "muted": "#7A5F52",
+        "grid": "#E2CDAE",
+        "stroke_muted": "#D8B58E"
+      },
+      "typography": {
+        "title_character": "bold zine headline, editable",
+        "body_character": "compact editorial body, slightly poster-like",
+        "label_character": "printed sticker labels",
+        "data_character": "bold number chips"
+      },
+      "composition_grammar": {
+        "grid": "zine blocks, sticker labels, intentional asymmetry",
+        "image_scale": "illustrative or cutout object accents",
+        "margin_system": "poster margins with print-like offsets",
+        "density_rule": "lively but not cluttered"
+      },
+      "image_language": {
+        "photography": "cutout editorial objects, duotone print feel",
+        "generated_assets": "riso-style objects or stamps, transparent cutout",
+        "lighting": "flat print-like contrast",
+        "crop": "cutout, sticker, or stamp-like object",
+        "texture": "riso grain, overprint, paper ink"
+      },
+      "native_component_skin": {
+        "cards": "sticker cards, colored offset shadows, bold chips",
+        "tables": "zine matrix with printed labels and colored separators",
+        "timelines": "poster strip with bold nodes",
+        "labels": "sticker-like blocks"
+      },
+      "page_families": {
+        "cover": "large cutout object and bold title",
+        "strategy": "argument stickers and motif object",
+        "execution": "mission cards as printed tickets",
+        "data": "bold chip matrix"
+      },
+      "visual_motifs": [
+        "sticker label",
+        "overprint block",
+        "duotone chip",
+        "print grain"
+      ],
+      "asset_prompt_base": "risograph zine event proposal, warm paper, magenta and cobalt overprint accents, cutout object, no fake text",
+      "do_not_use": [
+        "corporate gradients",
+        "glass UI",
+        "default table",
+        "fake logo",
+        "QR code"
+      ]
+    },
+    "glass_saas_signal": {
+      "name": "Glass SaaS Signal",
+      "reference_summary": "Product-demo proposal system with translucent panels, luminous signal assets, compact UI-like modules, and controlled gradient depth.",
+      "quality_bar": "Must feel like a polished product proposal interface, not decorative glass blobs.",
+      "layout_recipe": "glass_saas",
+      "palette": {
+        "background": "#121524",
+        "surface": "#1A2033",
+        "ink": "#F4F7FF",
+        "accent": "#7C5CFF",
+        "secondary_accent": "#00D4FF",
+        "muted": "#9AA4C1",
+        "grid": "#2C3350",
+        "label": "#0D1020",
+        "on_label": "#F4F7FF",
+        "stroke_muted": "#070914"
+      },
+      "typography": {
+        "title_character": "clean product headline, editable",
+        "body_character": "compact SaaS dashboard copy",
+        "label_character": "UI capsule labels",
+        "data_character": "large product metrics"
+      },
+      "composition_grammar": {
+        "grid": "dashboard panels, translucent modules, strong object light",
+        "image_scale": "visual object as product-signal hero",
+        "margin_system": "interface-like margins with stable panel rhythm",
+        "density_rule": "compact but polished operational modules"
+      },
+      "image_language": {
+        "photography": "glossy interface object, luminous highlights",
+        "generated_assets": "transparent luminous product/event signal object",
+        "lighting": "cool neon rim light with controlled contrast",
+        "crop": "object inside panel or full-bleed hero field",
+        "texture": "soft glass material and subtle depth"
+      },
+      "native_component_skin": {
+        "cards": "dark translucent panels with bright accent tabs",
+        "tables": "UI matrix panels with glowing chips",
+        "timelines": "dashboard progress rail with nodes",
+        "labels": "small UI capsules"
+      },
+      "page_families": {
+        "cover": "glowing product-like object in dashboard shell",
+        "strategy": "interface modules plus visual object",
+        "execution": "workflow cards as product tasks",
+        "data": "dark metric cards and matrix panels"
+      },
+      "visual_motifs": [
+        "glass panel",
+        "signal glow",
+        "UI capsule",
+        "dashboard rail"
+      ],
+      "asset_prompt_base": "premium glassmorphism SaaS proposal interface, dark surface, luminous accent, transparent product/event signal object, no fake UI text",
+      "do_not_use": [
+        "gradient orb decoration",
+        "random UI labels",
+        "fake product logo",
+        "QR code",
+        "dense fake interface copy"
+      ]
+    }
+  },
+  "deprecated_style_packs": {
+    "warm_documentary_pharma": {
+      "name": "Warm Documentary Pharma",
+      "reference_summary": "Warm documentary pharmaceutical proposal system using dawn light, human presence, glass architecture, restrained cinematic framing, and editorial treatment notes.",
+      "quality_bar": "Must feel like a premium brand-film treatment translated into editable PPT pages, not a stock medical template or a generic card deck.",
+      "layout_recipe": "warm_documentary",
+      "palette": {
+        "background": "#F3ECE1",
+        "surface": "#FFF9EF",
+        "ink": "#17130F",
+        "accent": "#C46E35",
+        "secondary_accent": "#4F7F86",
+        "muted": "#70675D",
+        "grid": "#D7CABC",
+        "label": "#1D1813",
+        "on_label": "#FFF8ED",
+        "stroke_muted": "#A7927D"
+      },
+      "typography": {
+        "title_character": "quiet cinematic editorial headline, editable",
+        "body_character": "restrained proposal body with documentary warmth",
+        "label_character": "film code, time marker, and treatment labels",
+        "data_character": "small editorial evidence markers"
+      },
+      "composition_grammar": {
+        "grid": "wide cinematic frame, letterbox bars, asymmetric title rail, slim annotation lines",
+        "image_scale": "large still frame as narrative evidence, not background decoration",
+        "margin_system": "generous cinematic margins with editorial caption discipline",
+        "density_rule": "one emotional script line plus compact proposal interpretation"
+      },
+      "image_language": {
+        "photography": "warm documentary city-healthcare scenes, dawn light, glass, human silhouettes, restrained camera",
+        "generated_assets": "warm signal ribbon or transparent documentary light accent only when it supports continuity",
+        "lighting": "soft sunrise, golden rim light, calm interior daylight",
+        "crop": "wide cinematic crop, human-scale detail, no fake medical claims",
+        "texture": "subtle film grain and paper warmth"
+      },
+      "native_component_skin": {
+        "cards": "thin editorial treatment panels with warm accent rules",
+        "tables": "minimal annotated treatment grid, no default table",
+        "timelines": "film-sequence rail with timecode nodes",
+        "labels": "black film labels, warm amber chapter chips, muted annotation rules"
+      },
+      "page_families": {
+        "cover": "full cinematic still with editable treatment title",
+        "strategy": "still frame plus editable interpretation and proof points",
+        "execution": "sequence frame with editable action logic and handoff labels",
+        "data": "restrained evidence notes beside cinematic frame"
+      },
+      "visual_motifs": [
+        "letterbox frame",
+        "timecode label",
+        "warm horizon rule",
+        "treatment annotation"
+      ],
+      "asset_prompt_base": "premium warm documentary pharmaceutical brand-film proposal, sunrise glass architecture, human-scale action, restrained editorial treatment, no fake logo, no medical claim text",
+      "do_not_use": [
+        "cold sci-fi lab",
+        "fake product pack",
+        "fake hospital logo",
+        "random UI text",
+        "QR code",
+        "over-medicalized patient imagery"
+      ]
+    }
+  }
+}

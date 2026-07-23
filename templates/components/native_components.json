@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "presets": {
+    "impact_cover": {
+      "mode": "full_image",
+      "description": "High-impact cover/KV/chapter structure with editable title and support copy.",
+      "editable_defaults": ["title", "support"],
+      "visual_roles": ["Hero Accent", "Atmosphere Layer"],
+      "layout_zones": ["editable headline rail", "large image/object field", "support label band", "editorial frame"],
+      "design_floor": "Must include a real visual field or generated object; do not leave a plain central rectangle as the final cover."
+    },
+    "strategy_argument_cards": {
+      "mode": "hybrid_native",
+      "description": "Editable argument card stack with one visual object anchor and optional short visual text asset.",
+      "editable_defaults": ["title", "core_message", "argument_cards"],
+      "visual_roles": ["Structural Metaphor", "Hero Accent"],
+      "layout_zones": ["strategy label", "editable argument stack", "visual metaphor panel", "short visual-expression slot"],
+      "design_floor": "The visual asset must operate as the metaphor for the argument, not as detached decoration."
+    },
+    "execution_ticket_steps": {
+      "mode": "template_native",
+      "description": "Editable mechanism/process steps styled as ticket or mission cards.",
+      "editable_defaults": ["title", "step_cards", "roles"],
+      "visual_roles": ["Object-Based Layout", "Icon System"],
+      "layout_zones": ["mechanism object panel", "icon strip or object shelf", "editable ticket cards", "bottom role marker"],
+      "design_floor": "Execution pages must include a designed object/icon panel plus editable ticket cards; no plain step list."
+    },
+    "execution_timeline": {
+      "mode": "template_native",
+      "description": "Editable horizontal rollout timeline with milestone nodes.",
+      "editable_defaults": ["title", "milestones", "date_labels"],
+      "visual_roles": ["Data Visual Skin", "Structural Metaphor"],
+      "layout_zones": ["campaign rhythm rule", "editable milestone cards", "date labels", "section marker"],
+      "design_floor": "Use a visible project-specific rhythm line and styled milestone cards instead of default timeline SmartArt."
+    },
+    "benefit_matrix": {
+      "mode": "template_native",
+      "description": "Editable grid/matrix for benefits, value exchange, or rights packages.",
+      "editable_defaults": ["title", "row_labels", "column_labels", "cells"],
+      "visual_roles": ["Data Visual Skin"],
+      "layout_zones": ["dark header band", "value group labels", "number chips", "editable matrix cells"],
+      "design_floor": "Tables must become a skinned matrix with hierarchy, chips, and spacing; never use default Office table styling."
+    },
+    "data_capsules": {
+      "mode": "template_native",
+      "description": "Editable KPI capsule row or grouped data takeaways.",
+      "editable_defaults": ["title", "numbers", "labels", "takeaways"],
+      "visual_roles": ["Data Visual Skin"]
+    },
+    "cinematic_storyboard": {
+      "mode": "hybrid_native",
+      "description": "Cinematic proposal page built from a real frame or generated still, with editable title, script line, interpretation, and proposal logic.",
+      "editable_defaults": ["title", "voiceover_line", "strategy_interpretation", "proposal_logic"],
+      "visual_roles": ["Hero Accent", "Atmosphere Layer", "Structural Metaphor"],
+      "layout_zones": ["large cinematic frame", "editable title rail", "voiceover caption", "proposal interpretation panel", "film code and continuity markers"],
+      "design_floor": "The image must act as the page's narrative evidence. Editable text should read as a designed film-treatment/proposal page, not as cards pasted over a background."
+    },
+    "brand_argument_spread": {
+      "mode": "hybrid_native",
+      "description": "Flat editorial brand-strategy spread for real proposal reasoning pages, with oversized editable claim text, structured proof points, and no shadows.",
+      "editable_defaults": ["title", "claim", "supporting_logic", "proof_points"],
+      "visual_roles": ["Structural Metaphor", "Data Visual Skin"],
+      "layout_zones": ["oversized claim typography", "flat proof grid", "signal line system", "editable interpretation rail", "direction markers"],
+      "design_floor": "Must feel like a strategic brand proposal spread. Avoid card shadows, SVG glow, default bullets, and generic rounded containers."
+    }
+  }
+}

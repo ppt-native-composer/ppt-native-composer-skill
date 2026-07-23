@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/draft/2020-12/schema","type":"object","required":["review_id","planning_revision","pages","visual_rhythm","continuity_review"],"properties":{"review_id":{"type":"string"},"planning_revision":{"type":"string"},"pages":{"type":"array"},"visual_rhythm":{"type":"object"},"continuity_review":{"type":"object"}},"additionalProperties":true}

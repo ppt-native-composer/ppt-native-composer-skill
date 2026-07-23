@@ -1,0 +1,284 @@
+{
+  "version": "v0.1_draft",
+  "status": "planning_thresholds_only",
+  "threshold_profile": "strategy_concept_v0_1",
+  "measurement_definitions": {
+    "cjk_char_count": {
+      "chinese_character_weight": 1,
+      "chinese_punctuation_weight": 1,
+      "latin_or_digit_weight_for_density_approximation": 0.5,
+      "latin_char_count_can_be_recorded_separately": true
+    },
+    "text_box_area": {
+      "formula": "bbox.w * bbox.h",
+      "unit": "square_inches",
+      "future_padding_rule": "If padding data exists, also calculate effective_text_area while preserving raw text_box_area."
+    },
+    "density": {
+      "formula": "cjk_char_count / text_box_area",
+      "unit": "cjk_chars_per_square_inch"
+    },
+    "estimated_line_count": {
+      "phase_1": "Use manual or known line breaks from source/EVC.",
+      "phase_2": "Estimate from font size, box width, and CJK/Latin character mix."
+    },
+    "proof_label_to_anchor_dot_distance": {
+      "method": "Shortest distance from nearest edge of text bbox to anchor dot center.",
+      "unit": "inches"
+    },
+    "proof_label_to_curve_distance": {
+      "method": "Shortest distance from text bbox center to curve polyline or sampled Bezier points.",
+      "unit": "inches"
+    },
+    "claim_to_node_distance": {
+      "method": "Edge-to-edge distance from claim bbox to node bbox.",
+      "unit": "inches",
+      "fail_if_overlaps_node_core": true
+    },
+    "title_to_map_entry_axis_distance": {
+      "method": "Vertical distance from title bbox bottom edge to map_entry_axis.",
+      "unit": "inches"
+    },
+    "collision": {
+      "hard_collision": "bbox overlap",
+      "proximity_warning": "distance below relevant clearance threshold"
+    }
+  },
+  "status_mapping_rules": {
+    "below_min_size": {
+      "title": "fail",
+      "claim": "fail",
+      "proof_label": "fail",
+      "caption": "partial_unless_density_also_exceeds_limit",
+      "page_number": "partial_unless_density_also_exceeds_limit"
+    },
+    "density_above_role_max": "partial",
+    "density_above_role_max_multiplier_for_fail": 1.25,
+    "line_count_above_max_lines": "partial",
+    "line_count_above_max_lines_plus_one": "fail",
+    "proof_label_to_anchor_dot_above_fail_distance": "binding_fail",
+    "proof_label_to_curve_above_fail_distance": "binding_fail",
+    "metadata_binding_pass_but_rendered_relationship_fail": "binding_status_fail",
+    "high_severity_issue_on_strict_role_can_trigger_l2_fail": true,
+    "multiple_medium_issues_can_aggregate_to_l2_fail": true
+  },
+  "role_strictness": {
+    "strategy_concept_pages": {
+      "title": "strict",
+      "claim": "strict",
+      "proof_label": "strict",
+      "caption": "medium",
+      "page_number": "low"
+    },
+    "execution_pages": {
+      "status": "not_enabled_for_this_profile",
+      "notes": "Execution/detail pages need a separate threshold profile."
+    },
+    "routes": {
+      "element_first_composition": {
+        "visual_binding_enabled": true,
+        "element_weight_enabled": true
+      },
+      "full_substrate_hybrid": {
+        "media_route_checks_enabled": true,
+        "element_id_binding_can_be_weaker": true
+      },
+      "full_substrate": {
+        "media_route_checks_enabled": true,
+        "element_id_binding_can_be_weaker": true
+      }
+    }
+  },
+  "contrast_thresholds": {
+    "normal_text_min_contrast": 4.5,
+    "large_text_min_contrast": 3.0,
+    "quiet_navigation_min_contrast": 3.0,
+    "quiet_navigation_absolute_min_contrast": 2.5,
+    "warning_margin": 0.3,
+    "image_background_requires_manual_review": true,
+    "role_requirements": {
+      "title": "normal_text",
+      "claim": "normal_text",
+      "proof_label": "normal_text",
+      "caption": "normal_text",
+      "page_number": "quiet_navigation"
+    },
+    "large_text_rule": {
+      "font_size_pt_at_or_above": 18,
+      "bold_font_size_pt_at_or_above": 14
+    }
+  },
+  "typography_role_thresholds": {
+    "title": {
+      "min_size_pt": 18,
+      "preferred_size_pt": [24, 32],
+      "max_lines": 2,
+      "max_cjk_chars_per_square_inch": 16,
+      "fail_if_below_min": true,
+      "notes": "Strategy/concept titles must act as visual assertions, not just slide labels."
+    },
+    "claim": {
+      "min_size_pt": 12,
+      "preferred_size_pt": [15, 20],
+      "max_lines": 3,
+      "max_cjk_chars_per_square_inch": 22,
+      "fail_if_below_min": true,
+      "notes": "Claims should read as focal interpretation labels, not compact body copy."
+    },
+    "proof_label": {
+      "min_size_pt": 9,
+      "preferred_size_pt": [10.5, 13],
+      "max_lines": 2,
+      "max_cjk_chars_per_square_inch": 24,
+      "fail_if_below_min": true,
+      "notes": "Proof labels should read as labels on paths, nodes, coordinates, or layers."
+    },
+    "caption": {
+      "min_size_pt": 7.5,
+      "preferred_size_pt": [8.5, 10],
+      "max_lines": 3,
+      "max_cjk_chars_per_square_inch": 36,
+      "fail_if_below_min": false,
+      "notes": "Captions may be smaller, but should trigger risk if dense or unreadable for projection."
+    },
+    "page_number": {
+      "min_size_pt": 7.5,
+      "preferred_size_pt": [8.5, 10],
+      "max_lines": 1,
+      "max_cjk_chars_per_square_inch": 8,
+      "fail_if_below_min": false,
+      "notes": "Page number can be quiet, but must remain readable."
+    }
+  },
+  "density_thresholds": {
+    "text_box_area": {
+      "high_risk_below_square_inches": 0.25,
+      "notes": "Except page numbers or tiny labels."
+    },
+    "cjk_char_density": {
+      "use_role_max_cjk_chars_per_square_inch": true
+    },
+    "line_count": {
+      "use_role_max_lines": true
+    },
+    "dense_body_copy_risk": {
+      "claim_density_above": 22,
+      "proof_label_density_above": 24,
+      "caption_density_above": 36
+    },
+    "caption_crowding_risk": {
+      "caption_area_below_square_inches": 3.5,
+      "caption_cjk_chars_above": 45
+    },
+    "claim_compression_risk": {
+      "claim_area_below_square_inches": 2.4,
+      "claim_cjk_chars_above": 32
+    }
+  },
+  "proximity_binding_thresholds": {
+    "proof_label_to_anchor_dot": {
+      "preferred_distance_inches": [0.05, 0.45],
+      "warning_if_greater_than_inches": 0.65,
+      "fail_if_greater_than_inches": 0.9
+    },
+    "proof_label_to_curve": {
+      "preferred_distance_inches": [0.05, 0.28],
+      "warning_if_greater_than_inches": 0.45,
+      "fail_if_greater_than_inches": 0.65
+    },
+    "claim_to_node_or_rings": {
+      "preferred_distance_inches": [0.05, 0.35],
+      "warning_if_greater_than_inches": 0.6,
+      "fail_if_greater_than_inches": 0.9,
+      "fail_if_overlaps_node_core": true
+    },
+    "title_to_map_entry_axis": {
+      "preferred_vertical_distance_inches": [0.05, 0.35],
+      "warning_if_greater_than_inches": 0.55,
+      "fail_if_greater_than_inches": 0.85
+    },
+    "caption_to_texture_field": {
+      "warning_if_texture_opacity_above": 0.25,
+      "fail_if_texture_opacity_above_and_text_below_preferred": 0.4
+    }
+  },
+  "collision_thresholds": {
+    "text_vs_node_rings": {
+      "minimum_clearance_from_node_core_inches": 0.12,
+      "warning_if_text_overlaps_rings_and_role_is_not_claim": true,
+      "fail_if_text_overlaps_node_core": true
+    },
+    "text_vs_curve": {
+      "minimum_clearance_for_non_bound_text_inches": 0.12,
+      "fail_if_curve_crosses_readable_text": true
+    },
+    "text_vs_text": {
+      "minimum_clearance_inches": 0.08,
+      "warning_if_below_inches_for_strategy_or_concept": 0.12
+    },
+    "text_over_texture": {
+      "warning_if_texture_opacity_above": 0.25,
+      "fail_if_text_below_role_min_and_texture_opacity_above": 0.25
+    }
+  },
+  "element_weight_thresholds": {
+    "left_complexity_field": {
+      "preferred_opacity": [0.28, 0.42],
+      "warning_if_below": 0.22,
+      "warning_if_above": 0.5,
+      "notes": "Too low becomes meaningless; too high harms text readability."
+    },
+    "reasoning_curve": {
+      "preferred_stroke_width_pt": [1.25, 1.7],
+      "preferred_opacity": [0.62, 0.78],
+      "warning_if_width_below_pt": 1.0,
+      "warning_if_opacity_below": 0.55,
+      "notes": "Curves should be visual skeleton, not hairline decoration."
+    },
+    "coordinate_rings": {
+      "preferred_opacity": [0.18, 0.34],
+      "preferred_stroke_width_pt": [0.4, 0.7],
+      "warning_if_opacity_above": 0.42,
+      "notes": "Rings should establish coordinate logic without becoming target/radar UI."
+    },
+    "anchor_dot": {
+      "preferred_radius_inches": [0.035, 0.055],
+      "warning_if_below_inches": 0.025,
+      "warning_if_above_inches": 0.075,
+      "notes": "Dots should anchor labels without becoming bullets or scatterplot noise."
+    }
+  },
+  "route_compliance_thresholds": {
+    "element_first_composition": {
+      "forbid_16_9_generated_asset_unless_explicit_exception": true,
+      "local_generated_asset_must_have_alpha_when_transparent_required": true,
+      "possible_full_slide_substrate_ratio_range": [1.72, 1.84],
+      "full_slide_substrate_placement_threshold": {
+        "width_fraction_above": 0.8,
+        "height_fraction_above": 0.8
+      },
+      "reasoning_curves_must_not_be_raster_baked": true,
+      "text_must_not_be_baked_into_local_assets": true
+    }
+  },
+  "page01_v0_3_calibration": {
+    "expected_l1_mechanical": "pass",
+    "expected_element_first_route": "pass",
+    "expected_l2_layout": "fail",
+    "expected_l3_readiness": "not_ready",
+    "expected_can_continue_to_next_automatic_version": false,
+    "expected_captured_failures": [
+      "claim_too_dense",
+      "caption_too_small",
+      "proof_3_detached",
+      "curves_too_weak_or_diagrammatic",
+      "left_texture_too_cautious",
+      "visual_binding_fail"
+    ]
+  },
+  "tuning_requirement": {
+    "requires_more_examples": true,
+    "do_not_claim_universal_correctness": true,
+    "purpose": "Catch obvious defects and guide review, not replace final design judgment."
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://codex.local/skills/ppt-native-composer/design_intent.schema.json",
+  "title": "PPT Native Composer Design Intent",
+  "type": "object",
+  "required": [
+    "slide_number",
+    "title",
+    "page_function",
+    "intent_version",
+    "lifecycle_status",
+    "design_problem",
+    "desired_perception",
+    "core_design_argument",
+    "main_visual_move",
+    "visual_metaphor",
+    "why_this_works",
+    "rejected_directions",
+    "text_image_relationship",
+    "editable_strategy",
+    "asset_intent",
+    "layout_intent",
+    "do_not_do",
+    "prompt_brief",
+    "visual_qa_expectations",
+    "approved",
+    "approved_by",
+    "approval_notes"
+  ],
+  "properties": {
+    "slide_number": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string" },
+    "page_function": { "type": "string" },
+    "intent_version": { "type": "string", "default": "v1" },
+    "lifecycle_status": {
+      "type": "string",
+      "enum": ["draft_for_routing", "route_bound", "human_approved"],
+      "default": "draft_for_routing"
+    },
+    "route_binding": {
+      "type": ["object", "null"],
+      "properties": {
+        "selected_route": {
+          "type": "string",
+          "enum": [
+            "element_asset_hybrid",
+            "full_substrate_hybrid",
+            "visual_reference_mode",
+            "template_native_plus_skin",
+            "pure_native_safety"
+          ]
+        },
+        "route_provenance": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "design_problem": { "type": "string", "minLength": 1 },
+    "desired_perception": { "type": "string", "minLength": 1 },
+    "core_design_argument": { "type": "string", "minLength": 1 },
+    "main_visual_move": { "type": "string", "minLength": 1 },
+    "visual_metaphor": { "type": "string" },
+    "why_this_works": { "type": "string" },
+    "rejected_directions": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["direction", "reason"],
+        "properties": {
+          "direction": { "type": "string" },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "text_image_relationship": {
+      "type": "object",
+      "required": ["relationship_type", "description", "must_not_be"],
+      "properties": {
+        "relationship_type": {
+          "type": "string",
+          "enum": ["embedded", "anchored", "structural_label", "contrast", "sequential", "overlay"]
+        },
+        "description": { "type": "string" },
+        "must_not_be": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "editable_strategy": {
+      "type": "object",
+      "required": ["must_remain_editable", "how_editable_text_participates_in_visual", "what_must_not_be_baked_into_image"],
+      "properties": {
+        "must_remain_editable": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "how_editable_text_participates_in_visual": { "type": "string" },
+        "what_must_not_be_baked_into_image": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "asset_intent": {
+      "type": "object",
+      "required": ["asset_type", "visual_job", "what_it_must_prove", "what_breaks_if_removed"],
+      "properties": {
+        "asset_type": { "type": "string" },
+        "visual_job": { "type": "string" },
+        "what_it_must_prove": { "type": "string" },
+        "what_breaks_if_removed": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": true
+    },
+    "layout_intent": {
+      "type": "object",
+      "required": ["composition_logic", "negative_space_logic", "visual_hierarchy", "native_support_role"],
+      "properties": {
+        "composition_logic": { "type": "string" },
+        "negative_space_logic": { "type": "string" },
+        "visual_hierarchy": { "type": "string" },
+        "native_support_role": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "do_not_do": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "prompt_brief": { "type": "string" },
+    "visual_qa_expectations": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "approved": { "type": "boolean", "default": false },
+    "approved_by": { "type": "string" },
+    "approval_notes": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycle_status": { "const": "human_approved" } } },
+      "then": {
+        "properties": { "approved": { "const": true } },
+        "required": ["route_binding"]
+      }
+    }
+  ],
+  "additionalProperties": true
+}
