@@ -67,7 +67,7 @@ The checkout includes [SKILL.md](SKILL.md) for Codex. Installing the Python pack
 
 `python -m pip wheel --no-deps --wheel-dir dist .` builds a wheel with the runtime, schemas, templates and example data. It excludes client outputs, tests, caches and environments. The stable entrypoints for this alpha are `ppt-native-assemble`, `ppt-native-inspect`, and `ppt-native-example`; internal Python functions are not a stable API.
 
-GitHub Actions is configured for source tests on Linux/Windows and an isolated wheel-only installation check. A workflow definition is not a claim that hosted CI or PowerPoint rendering has passed.
+GitHub Actions runs source tests on Linux/Windows (Python 3.11/3.13) and an isolated wheel-only installation check. The [verified engineering run](https://github.com/ppt-native-composer/ppt-native-composer-skill/actions/runs/34177317590) passed; it does not test PowerPoint rendering or grant visual approval.
 
 ## Production Boundary
 

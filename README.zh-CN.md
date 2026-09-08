@@ -67,7 +67,7 @@ python scripts/render_preview.py outputs/first-example/example.pptx --outdir out
 
 `python -m pip wheel --no-deps --wheel-dir dist .` 可构建含运行时、schemas、模板和示例数据的 wheel，不包含客户产出、测试、缓存或虚拟环境。本 alpha 的公开入口为 `ppt-native-assemble`、`ppt-native-inspect`、`ppt-native-example`；内部 Python 函数尚不是稳定 API。
 
-GitHub Actions 已配置 Linux/Windows 源码测试及隔离的 wheel 安装检查。配置文件存在不等于远端 CI 或真实 PowerPoint 渲染已经通过。
+GitHub Actions 执行 Linux/Windows（Python 3.11/3.13）源码测试及隔离的 wheel 安装检查。[本次工程 CI](https://github.com/ppt-native-composer/ppt-native-composer-skill/actions/runs/34177317590) 已通过；它不检查真实 PowerPoint 渲染，也不代表视觉批准。
 
 ## 生产边界
 

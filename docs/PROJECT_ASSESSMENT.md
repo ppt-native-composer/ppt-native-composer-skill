@@ -26,7 +26,8 @@ The current work is an engineering alpha, not a client-ready design product.
 
 本机 skill 的 installed、canonical 和公开仓库是不同维护对象。个人规范源的入口
 已收口，旧入口移入历史 reference；本次未直接覆盖安装副本，也未执行统一目录
-发布。公开仓库的代码修复没有反向复制进私人历史 runtime。
+发布。规范源独立补入相同的安装、安全性与兼容性修复，没有从公开目录整体
+覆盖私人 runtime，也没有重新发布私人 fixtures 或历史 evidence。
 
 ## 已完成的开发目标
 
@@ -49,6 +50,9 @@ The current work is an engineering alpha, not a client-ready design product.
 - LibreOffice 导出 PDF、Poppler 渲染 PNG 成功，实际检查页图：四段英文及色样可见，无截断。这不是 CJK 或 PowerPoint 跨环境验收。
 - public/canonical `SKILL.md` 均通过 quick_validate；`git diff --check` 通过。
 - 示例程序继续输出 `visual_qa: not_run`、`client_grade: false`；人工观察不由程序自动提升为视觉批准。
+- 收口复验：公开版 146 项、私人规范源 138 项测试通过；sdist 构建后再构建 wheel、在全新环境独立安装并运行通过。
+- [GitHub hosted CI](https://github.com/ppt-native-composer/ppt-native-composer-skill/actions/runs/34177317590) 已在代码提交 `4ed1546` 上通过：Linux/Windows x Python 3.11/3.13 四组源码测试与匿名示例，以及独立 wheel 安装检查。
+- 首轮 CI 真实发现 Python 3.11 不支持的同引号嵌套 f-string，以及 Windows 测试读取中文 JSON 时使用默认编码的问题；已分别改为等价字符串拼接和显式 UTF-8，没有跳过测试或放宽合同。
 
 复现入口见 README。额外安装检查可用全新 wheel 环境执行
 `python tests/check_installed_distribution.py`，该检查明确拒绝加载源码 checkout。
@@ -56,7 +60,8 @@ The current work is an engineering alpha, not a client-ready design product.
 
 ## 不宣称完成的部分
 
-- GitHub workflow 已配置，但本轮未推送、未运行 hosted CI；Linux/Windows job 结果待实际运行。
+- GitHub 工程 CI 已通过，但它不渲染页面，不等于 Windows 字体或 PowerPoint 视觉验收。
+- 本机受管 skill 的 scoped update plan 已生成，仍须按目录合同确认精确 plan_id 后事务部署；Python 包提交不等于本机 skill 已升级。
 - 本轮没有验证 Microsoft PowerPoint、Keynote、中文跨环境排版或真实 template-native 生产。
 - 没有做全仓库版权、供应链或完整历史秘密审计；开源法律与安全认证不在本次结论中。
 - 旧 assembler 的固定名称 evidence 仍需使用独立 revision 目录，或使用 immutable manifest runner。
@@ -67,5 +72,6 @@ The current work is an engineering alpha, not a client-ready design product.
 
 只接受来自真实 reconstruction 用户的可复现缺陷或可移植性问题。
 不主动追加设计模块、更多 pattern、审美打分或大型 deck 实验。
-下一项外部验证应是按文档在第二种 OS 上安装运行，以及提供有使用权的真实
-分层稿进行一次受限还原。两者没有证据前，不升级为 production-ready。
+下一项外部验证应是使用者在实际 PowerPoint/字体环境中，提供有使用权的真实
+分层稿进行一次受限还原。CI 已覆盖第二种 OS 的机械安装运行，但不替代这个
+视觉与使用验收；没有该证据前，不升级为 production-ready。
