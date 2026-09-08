@@ -19,17 +19,17 @@ def test_input_changes_do_not_reuse_stale_assembly_cache(tmp_path: Path, mutatio
     assert cold["overall_status"] == "success"
     data = json.loads(manifest.read_text(encoding="utf-8"))
     if mutation == "evc":
-        path = Path(data["inputs"]["evc"]); payload = json.loads(path.read_text()); payload["editable_objects"][0]["typographic_treatment"]["weight_note"] = "mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
+        path = Path(data["inputs"]["evc"]); payload = json.loads(path.read_text(encoding="utf-8")); payload["editable_objects"][0]["typographic_treatment"]["weight_note"] = "mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
     elif mutation == "design_intent":
-        path = Path(data["inputs"]["design_intent"]); payload = json.loads(path.read_text()); payload["approval_notes"] = "semantic input mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
+        path = Path(data["inputs"]["design_intent"]); payload = json.loads(path.read_text(encoding="utf-8")); payload["approval_notes"] = "semantic input mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
     elif mutation == "route":
-        path = Path(data["inputs"]["route"]); payload = json.loads(path.read_text()); payload["page_production_route"]["selected_route"] = "full_substrate_hybrid"; path.write_text(json.dumps(payload), encoding="utf-8")
+        path = Path(data["inputs"]["route"]); payload = json.loads(path.read_text(encoding="utf-8")); payload["page_production_route"]["selected_route"] = "full_substrate_hybrid"; path.write_text(json.dumps(payload), encoding="utf-8")
         changed = RuntimeCaseRunner(manifest, skip_preview=True).run()
         assert changed["overall_status"] == "failed"
         assert "normalize_route" in changed["failed_stages"]
         return
     elif mutation == "asset_registry":
-        path = Path(data["inputs"]["asset_registry"]); payload = json.loads(path.read_text()); payload["slots"][0]["runtime_note"] = "registry mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
+        path = Path(data["inputs"]["asset_registry"]); payload = json.loads(path.read_text(encoding="utf-8")); payload["slots"][0]["runtime_note"] = "registry mutation"; path.write_text(json.dumps(payload), encoding="utf-8")
     elif mutation == "asset_content":
         asset = project / "assets" / "fixture.png"; asset.write_bytes(asset.read_bytes() + b"mutation")
     elif mutation == "preview_dpi":
