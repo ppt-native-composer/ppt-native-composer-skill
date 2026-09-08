@@ -1,0 +1,5 @@
+{
+  "slots": [
+    {"asset_id": "example_swatch", "path": "swatch.png", "status": "ready", "transparency_required": false}
+  ]
+}

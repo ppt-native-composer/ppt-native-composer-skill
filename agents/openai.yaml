@@ -1,4 +1,4 @@
 interface:
   display_name: "PPT Native Composer"
-  short_description: "Editable native PPT deck builder"
-  default_prompt: "Use $ppt-native-composer to turn my finalized GPT proposal script into a high-design editable PPT deck."
+  short_description: "Reconstruct approved layouts as editable PPTX"
+  default_prompt: "Use $ppt-native-composer to reconstruct my approved artwork and copy as a hybrid editable PPTX and verify the result."

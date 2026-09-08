@@ -42,6 +42,15 @@ def main() -> int:
     parser.add_argument("--cols", type=int, default=2, help="Contact sheet columns.")
     args = parser.parse_args()
 
+    if args.dpi <= 0 or args.cols <= 0:
+        parser.error("--dpi and --cols must be positive.")
+    pptx = Path(args.pptx).resolve()
+    if not pptx.is_file():
+        parser.error(f"PPTX file does not exist: {pptx}")
+    outdir = Path(args.outdir).resolve()
+    if outdir.exists() and (not outdir.is_dir() or any(outdir.iterdir())):
+        parser.error("Preview output must be a new or empty directory; existing files are never deleted.")
+
     soffice = shutil.which("soffice") or shutil.which("libreoffice")
     pdftoppm = shutil.which("pdftoppm")
     if not soffice:
@@ -49,12 +58,7 @@ def main() -> int:
     if not pdftoppm:
         raise SystemExit("Missing pdftoppm on PATH.")
 
-    pptx = Path(args.pptx).resolve()
-    outdir = Path(args.outdir).resolve()
     outdir.mkdir(parents=True, exist_ok=True)
-    for old in outdir.glob("*"):
-        if old.is_file():
-            old.unlink()
 
     run([soffice, "--headless", "--convert-to", "pdf", "--outdir", str(outdir), str(pptx)])
     pdf = outdir / f"{pptx.stem}.pdf"

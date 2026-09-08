@@ -1,0 +1,36 @@
+name: Engineering checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  source:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install -e ".[test]"
+      - run: python -m compileall -q scripts
+      - run: python -m pytest tests -q
+      - run: ppt-native-example --output-dir outputs/ci-example
+
+  wheel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip wheel --no-deps --wheel-dir dist .
+      - run: python -m venv /tmp/ppt-wheel-env
+      - run: /tmp/ppt-wheel-env/bin/python -m pip install dist/*.whl
+      - run: /tmp/ppt-wheel-env/bin/python tests/check_installed_distribution.py

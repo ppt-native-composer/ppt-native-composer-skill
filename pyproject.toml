@@ -1,12 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "ppt-native-composer"
 version = "0.4.0"
 description = "Editable native PowerPoint composition runtime"
+readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
   "Pillow>=10",
   "python-pptx>=1.0",
   "jsonschema>=4.20",
+]
+
+[project.scripts]
+ppt-native-assemble = "ppt_native_composer.scripts.assemble_pptx:main"
+ppt-native-inspect = "ppt_native_composer.scripts.inspect_pptx_package:main"
+ppt-native-example = "ppt_native_composer.scripts.run_example:main"
+
+# Keep legacy scripts/ paths while also shipping an importable wheel. Explicit
+# discovery prevents unrelated top-level folders from becoming Python packages.
+[tool.setuptools]
+packages = ["ppt_native_composer", "ppt_native_composer.scripts"]
+include-package-data = false
+
+[tool.setuptools.package-dir]
+ppt_native_composer = "."
+
+[tool.setuptools.package-data]
+ppt_native_composer = [
+  "runtime_capability_manifest.json",
+  "schemas/*.json",
+  "templates/*/*.json",
+  "fixtures/examples/*.json",
+  "fixtures/examples/approved_artwork/*.json",
 ]
 
 [project.optional-dependencies]

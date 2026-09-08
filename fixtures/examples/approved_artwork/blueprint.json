@@ -1,0 +1,123 @@
+{
+  "example_only": true,
+  "final_script_source": {"path": "copy.json", "confirmed": true, "approval_scope": "bundled technical fixture only"},
+  "deck_brief": {"project_name": "Editable reconstruction installation check"},
+  "visual_bible": {
+    "asset_prompt_base": "No generated artwork; use the bundled technical swatch.",
+    "do_not_use": ["shadow", "card shadow", "fake depth", "client content", "unlicensed artwork"],
+    "design_tokens": {"colors": {
+      "paper": "#FFFFFF", "background": "#FFFFFF", "ink": "#191919",
+      "muted": "#555555", "accent": "#495966", "secondary_accent": "#657560", "line": "#BBBBBB"
+    }}
+  },
+  "page_family_map": {"1": "technical fixture"},
+  "asset_generation_policy": {"enabled": false},
+  "editability_policy": {"title_must_be_editable": true, "page_number_must_be_editable": true},
+  "validation_policy": {"no_svg_shadow": true, "no_container_shadow": true, "no_card_shadow": true, "no_fake_depth": true},
+  "font_plan": {"cjk": "Noto Sans CJK SC", "latin": "Liberation Sans"},
+  "slides": [{
+    "slide_number": 1,
+    "title": "An editable starting point",
+    "page_function": "technical_reconstruction_fixture",
+    "page_mode": "hybrid_native",
+    "core_message": "Copy stays editable while a reference swatch stays an image.",
+    "audience_takeaway": "This checks the engineering path, not visual quality.",
+    "visual_idea": "The declared swatch anchors its editable label in a fixed reference layout.",
+    "composition_plan": {
+      "type": "element_asset_hybrid",
+      "asset_zone": {"x": 8, "y": 2.5, "w": 3, "h": 2.25},
+      "text_safe_zone": {"x": 0.8, "y": 0.8, "w": 10.5, "h": 6.1},
+      "integration_logic": "The label sits outside the supplied swatch bounds; the title and footer use locked reference zones.",
+      "approved": true
+    },
+    "page_production_route": {
+      "slide_number": 1, "selected_route": "element_asset_hybrid", "composition_archetype_id": "reference_label",
+      "approval": {"approved": true, "approved_by": "fixture-maintainer", "approval_notes": "Technical fixture execution only; not a production approval."}
+    },
+    "composition_archetype": {
+      "archetype_id": "reference_label",
+      "approval": {"approved": true, "approved_by": "fixture-maintainer", "approval_notes": "Fixed technical layout; not a design recommendation."}
+    },
+    "design_intent": {
+      "lifecycle_status": "human_approved",
+      "route_binding": {"selected_route": "element_asset_hybrid"},
+      "design_problem": "Make the installation check inspectable without private project files.",
+      "desired_perception": "A clearly labelled technical example, not a client-facing sample.",
+      "core_design_argument": "The supplied swatch remains a picture and its label remains editable.",
+      "main_visual_move": "The supplied swatch anchors the native editable label.",
+      "text_image_relationship": {"relationship_type": "anchored"},
+      "editable_strategy": {"must_remain_editable": ["example_title", "example_page", "example_label", "example_caption"]},
+      "asset_intent": {"what_breaks_if_removed": "The swatch label loses the object it identifies."},
+      "layout_intent": {"native_support_role": "No added decorations; preserve the declared reference zones."},
+      "rejected_directions": [
+        {"direction": "baked labels", "reason": "The example must prove editability."},
+        {"direction": "new artwork", "reason": "This is an installation check, not visual production."}
+      ],
+      "visual_qa_expectations": ["design intent is visible", "text participates in visual logic", "asset is structural, not decorative", "editable text remains editable"],
+      "do_not_do": ["claim visual acceptance from a technical fixture"],
+      "approved": true,
+      "approved_by": "fixture-maintainer",
+      "approval_notes": "Only this static technical example is authorized; customer approval must come from the customer."
+    },
+    "editable_layer": {
+      "title": {"id": "example_title", "role": "title", "text": "An editable starting point", "editable": true},
+      "page_number": {"id": "example_page", "role": "page_number", "text": "01", "editable": true},
+      "body": [
+        {"id": "example_label", "role": "label", "text": "Reference swatch", "editable": true},
+        {"id": "example_caption", "role": "caption", "text": "A technical fixture, not an approved design.", "editable": true}
+      ]
+    },
+    "generated_layer": [],
+    "sourced_asset_layer": [{
+      "asset_id": "example_swatch", "asset_type": "png_element", "visual_role": "Reference swatch for the editable label", "status": "ready",
+      "expected_zone": {"x": 8, "y": 2.5, "w": 3, "h": 2.25}, "fit_mode": "contain",
+      "source": "swatch.json: original technical fixture", "license": "MIT"
+    }],
+    "native_graphic_layer": [],
+    "visual_text_layer": [],
+    "editable_visual_composition": {
+      "slide_number": 1, "title": "An editable starting point", "composition_version": "v2", "runtime_version": "evc_runtime_v2",
+      "text_layer_concept": "Reproduce four editable objects from a static reference contract.",
+      "why_text_is_visual": "The label is resolved against the image bounds, while the title and footer stay in the supplied zones.",
+      "visual_targets": [{"id": "example_swatch", "type": "image_region", "geometry": {"x": 8, "y": 2.5, "w": 3, "h": 2.25}}],
+      "editable_objects": [
+        {
+          "id": "example_title", "source_id": "example_title", "role": "title", "text": "An editable starting point", "editable": true,
+          "visual_behavior": "headline_anchor", "hierarchy_level": 1, "zone": {"x": 0.8, "y": 0.8, "w": 10.5, "h": 0.8},
+          "typographic_treatment": {"hierarchy_level": 1, "weight_token": "bold", "cjk_size_pt": 28, "latin_size_pt": 28, "color": "#191919", "latin_font_family": "Liberation Sans", "cjk_font_family": "Noto Sans CJK SC", "line_spacing": 1.15, "line_break_policy": "preserve", "bullet": false, "margins": {"left": 0, "right": 0, "top": 0, "bottom": 0}},
+          "relationship_to_asset": {"anchor_type": "reference_zone", "why_this_position": "Preserve the supplied title zone; no automatic art direction."},
+          "relational_binding": {"binding_type": "free", "binding_target_id": "", "attachment": "middle", "orientation": "horizontal", "reading_sequence": 1, "collision_policy": "fail", "minimum_clearance": 0.1, "fallback_behavior": "fail"},
+          "must_not_be": ["plain bullet list"]
+        },
+        {
+          "id": "example_page", "source_id": "example_page", "role": "page_number", "text": "01", "editable": true,
+          "visual_behavior": "reference_footer", "hierarchy_level": 3, "zone": {"x": 11.7, "y": 6.7, "w": 0.5, "h": 0.35},
+          "typographic_treatment": {"hierarchy_level": 3, "weight_token": "regular", "cjk_size_pt": 10, "latin_size_pt": 10, "color": "#555555", "latin_font_family": "Liberation Sans", "cjk_font_family": "Noto Sans CJK SC", "line_spacing": 1.15, "line_break_policy": "preserve", "bullet": false, "margins": {"left": 0, "right": 0, "top": 0, "bottom": 0}},
+          "relationship_to_asset": {"anchor_type": "reference_zone", "why_this_position": "Preserve the supplied footer zone."},
+          "relational_binding": {"binding_type": "free", "binding_target_id": "", "attachment": "middle", "orientation": "horizontal", "reading_sequence": 4, "collision_policy": "fail", "minimum_clearance": 0.1, "fallback_behavior": "fail"},
+          "must_not_be": ["plain bullet list"]
+        },
+        {
+          "id": "example_label", "source_id": "example_label", "role": "label", "text": "Reference swatch", "editable": true,
+          "visual_behavior": "asset_label", "hierarchy_level": 2, "zone": {"x": 4.5, "y": 3.3, "w": 3.2, "h": 0.6},
+          "typographic_treatment": {"hierarchy_level": 2, "weight_token": "regular", "cjk_size_pt": 18, "latin_size_pt": 18, "color": "#191919", "latin_font_family": "Liberation Sans", "cjk_font_family": "Noto Sans CJK SC", "line_spacing": 1.15, "line_break_policy": "preserve", "bullet": false, "margins": {"left": 0, "right": 0, "top": 0, "bottom": 0}},
+          "relationship_to_asset": {"anchor_type": "asset_edge", "asset_reference": "example_swatch", "why_this_position": "The label follows the reference swatch bounds."},
+          "relational_binding": {"binding_type": "node", "binding_target_id": "example_swatch", "attachment": "outside", "preferred_side": "left", "orientation": "horizontal", "reading_sequence": 2, "collision_policy": "fail", "minimum_clearance": 0.3, "fallback_behavior": "fail"},
+          "must_not_be": ["plain bullet list"]
+        },
+        {
+          "id": "example_caption", "source_id": "example_caption", "role": "caption", "text": "A technical fixture, not an approved design.", "editable": true,
+          "visual_behavior": "reference_caption", "hierarchy_level": 3, "zone": {"x": 0.8, "y": 6.7, "w": 9.5, "h": 0.35},
+          "typographic_treatment": {"hierarchy_level": 3, "weight_token": "regular", "cjk_size_pt": 12, "latin_size_pt": 12, "color": "#555555", "latin_font_family": "Liberation Sans", "cjk_font_family": "Noto Sans CJK SC", "line_spacing": 1.15, "line_break_policy": "preserve", "bullet": false, "margins": {"left": 0, "right": 0, "top": 0, "bottom": 0}},
+          "relationship_to_asset": {"anchor_type": "reference_zone", "why_this_position": "The footer explicitly distinguishes this technical fixture from artwork."},
+          "relational_binding": {"binding_type": "free", "binding_target_id": "", "attachment": "middle", "orientation": "horizontal", "reading_sequence": 3, "collision_policy": "fail", "minimum_clearance": 0.1, "fallback_behavior": "fail"},
+          "must_not_be": ["plain bullet list"]
+        }
+      ],
+      "native_support": [],
+      "anti_patterns": ["plain bullet list", "baked text"],
+      "approval": {"approved": true, "approved_by": "fixture-maintainer", "approval_notes": "Bundled technical fixture only; not a visual approval."}
+    },
+    "validation_checks": {"visual_qa_passed": false}
+  }]
+}

@@ -6,6 +6,8 @@
 
 It is not an autonomous art-direction engine. Client-grade visual direction requires a human-approved reference, flat comp, Figma/Photoshop source, or separately licensed/commissioned artwork.
 
+Status: **experimental engineering alpha**. Development is limited to reconstruction, installation, reproducibility and safety, not autonomous design. See the [current assessment](docs/PROJECT_ASSESSMENT.md).
+
 ## Included
 
 - deck, slide, design-intent, route, composition-archetype and EVC schemas;
@@ -29,17 +31,43 @@ Requires Python 3.11+.
 
 ```sh
 python3 -m venv .venv
-.venv/bin/python -m pip install -e '.[test]'
-.venv/bin/python -m pytest tests -q
+source .venv/bin/activate
+python -m pip install -e '.[test]'
+python -m pytest tests -q
+ppt-native-example --output-dir outputs/first-example
 ```
 
-Validate a structured deck blueprint before assembly:
+On Windows, use `py -3 -m venv .venv` then `.venv\Scripts\Activate.ps1`, followed by the same `python`/`ppt-native-*` commands. If shell activation is restricted, invoke `.venv\Scripts\python.exe` directly and use `-m ppt_native_composer.scripts.run_example` instead of the console command.
+
+The example is self-contained: it reconstructs one fixed page using four neutral editable text objects and an original solid-color test swatch. It never downloads artwork, uses client files, or imports test helpers. It writes `example.pptx`, editability/runtime evidence and `example_result.json`. It refuses any existing output directory. Its fixture approvals apply only to this example, **not** to customer work. This is an installation check, not a visual design sample.
+
+Validate an existing approved blueprint before assembly (the paths below are placeholders for your own project):
 
 ```sh
-python3 scripts/validate_blueprint.py project/deck_blueprint.json --mode assembly
-python3 scripts/assemble_pptx.py project/deck_blueprint.json --project-dir project -o project/output.pptx
-python3 scripts/inspect_pptx_package.py project/output.pptx
+python scripts/validate_blueprint.py project/deck_blueprint.json --mode assembly
+ppt-native-assemble project/deck_blueprint.json --project-dir project -o project/output.pptx
+ppt-native-inspect project/output.pptx --json
 ```
+
+The original `python scripts/assemble_pptx.py ...` CLI still works. For each revision, use a new project/output directory so the legacy assembler's named evidence files do not overwrite previous reports.
+
+### Optional Rendering
+
+LibreOffice (`soffice`) and Poppler (`pdftoppm`) must already be on PATH; they are not Python dependencies. Ensure your chosen fonts are installed. Use a dedicated **new or empty** preview directory:
+
+```sh
+python scripts/render_preview.py outputs/first-example/example.pptx --outdir outputs/first-example-preview
+```
+
+Missing tools mean rendering was not run. The example's `visual_qa: not_run` is never automatically promoted to pass; inspect the images and record human review separately. Python reopen and editable text do not prove correct CJK rendering.
+
+### Skill and Wheel
+
+The checkout includes [SKILL.md](SKILL.md) for Codex. Installing the Python package does not install a skill into Codex or change your existing skill catalog. Managed personal-skill installations should be updated through their canonical source and reviewed deployment flow.
+
+`python -m pip wheel --no-deps --wheel-dir dist .` builds a wheel with the runtime, schemas, templates and example data. It excludes client outputs, tests, caches and environments. The stable entrypoints for this alpha are `ppt-native-assemble`, `ppt-native-inspect`, and `ppt-native-example`; internal Python functions are not a stable API.
+
+GitHub Actions is configured for source tests on Linux/Windows and an isolated wheel-only installation check. A workflow definition is not a claim that hosted CI or PowerPoint rendering has passed.
 
 ## Production Boundary
 
